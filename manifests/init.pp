@@ -19,6 +19,8 @@ class freight (
   $cache           = $freight::params::cache,
   $symlinks        = $freight::params::symlinks,
   $gpg_email       = $freight::params::gpg_email,
+  $gpg_fullname    = $freight::params::gpg_fullname,
+  $lazy_gpg        = true,
   $manage_apt      = true,
   $apt_label       = $freight::params::apt_label,
   $apt_key         = $freight::params::key,
@@ -35,6 +37,7 @@ class freight (
   validate_bool($manage_apt)
   validate_bool($manage_apache)
   validate_bool($apt_include_src)
+  validate_bool($lazy_gpg)
   
   # Version validation - needs improvement
   validate_re($version, 'present|installed|latest|^[.+_0-9a-zA-Z:-]+$')
@@ -66,6 +69,34 @@ class freight (
   file { $varcache:
     ensure => directory,
     subscribe => Package['freight']
+  }
+  
+  if $lazy_gpg {
+    # This is bad
+    package { 'rng-tools':
+      ensure => present
+    }
+    
+    file { '/root/.gpg':
+      ensure => directory,
+      notify => Exec['freight::generate_entropy']
+    } ->
+    file { "/root/.gpg/${gpg_email}_added":
+      ensure => present,
+      notify => Exec['freight::generate_entropy',
+                     'freight::generate_gpg_key']
+    }
+    
+    exec { 'freight::generate_entropy':
+      command     => '/usr/sbin/rngd -r /dev/urandom',
+      require     => Package['rng-tools'],
+      refreshonly => true,
+      notify      => Exec['freight::generate_gpg_key']
+    }
+    exec { 'freight::generate_gpg_key':
+      command     => template('freight/gpg_generate.erb'),
+      refreshonly => true,
+    }
   }
   
   if $manage_apache {
