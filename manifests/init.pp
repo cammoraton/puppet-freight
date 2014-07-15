@@ -58,6 +58,16 @@ class freight (
     subscribe => Package['freight']
   }
   
+  file { $varlib:
+    ensure => directory,
+    subscribe => Package['freight']
+  }
+  
+  file { $varcache:
+    ensure => directory,
+    subscribe => Package['freight']
+  }
+  
   if $manage_apache {
     package { 'freight': 
       ensure => $version
