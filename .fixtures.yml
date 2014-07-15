@@ -1,0 +1,10 @@
+fixtures:
+  forge_modules:
+    apache:
+      repo: "puppetlabs/apache"
+      ref: "0.9.0"
+    concat: "puppetlabs/concat"
+    apt: "puppetlabs/apt"
+    stdlib: "puppetlabs/stdlib"
+  symlinks:
+    freight: "#{source_dir}"
