@@ -1,7 +1,7 @@
 define freight::apt (
   $location,
   $repo,
-  $release        = $::lsbdistrelease,
+  $release        = $::lsbdistcodename,
   $manage_key     = false,
   $key            = undef,
   $source         = undef

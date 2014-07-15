@@ -32,7 +32,7 @@ class freight::params {
   $key_source   = "http://packages.rcrowley.org/keyring.gpg"
   
   $apt_location = "http://packages.rcrowley.org"
-  $apt_release  = $::lsbdistrelease
+  $apt_release  = $::lsbdistcodename
   $apt_repo     = "main"
   
   # Apache defaults
