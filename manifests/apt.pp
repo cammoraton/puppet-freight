@@ -2,6 +2,7 @@ define freight::apt (
   $location,
   $repo,
   $release        = $::lsbdistcodename,
+  $include_src    = false,
   $manage_key     = false,
   $key            = undef,
   $source         = undef
@@ -12,7 +13,8 @@ define freight::apt (
   }
   
   validate_bool($manage_key)
-
+  validate_bool($include_src)
+  
   # Suck in apt
   include ::apt
 
@@ -32,8 +34,9 @@ define freight::apt (
     }
   }
   apt::source { $name:
-    location   => $location,
-    release    => $release,
-    repos      => $repo
+    location    => $location,
+    release     => $release,
+    repos       => $repo,
+    include_src => $include_src
   }
 }
