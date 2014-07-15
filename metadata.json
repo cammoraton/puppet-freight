@@ -3,6 +3,7 @@
   "checksums": {
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "Gemfile": "b6a583f0886b84b2ea67758217c31648",
+    "templates/freight.conf.erb": "5a3122188dfe17bfe35b119258ca2d94",
     "manifests/init.pp": "10eed6bd7d83a795d15521e233e2ba84",
     "Modulefile": "b3ab99f68d4dd2e3184422025db76850",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
