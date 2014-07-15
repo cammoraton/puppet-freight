@@ -14,7 +14,7 @@ define freight::apt (
   validate_bool($manage_key)
 
   # Suck in apt
-  require ::apt
+  include ::apt
 
   # If we're managing the repo key, validate things
   if $manage_key {
