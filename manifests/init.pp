@@ -12,6 +12,7 @@
 #
 class freight (
   $version         = 'installed',
+  $conf_file       = $freight::params::conf_file,
   $varcache        = $freight::params::varcache,
   $varlib          = $freight::params::varlib,
   $origin          = $freight::params::origin,
@@ -49,6 +50,12 @@ class freight (
       include_src => $apt_include_src,
       notify      => Package['freight']
     }
+  }
+  
+  file { $conf_file: 
+    ensure    => present,
+    content   => template('freight/freight.conf.erb'),
+    subscribe => Package['freight']
   }
   
   if $manage_apache {
