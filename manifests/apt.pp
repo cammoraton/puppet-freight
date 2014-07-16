@@ -1,6 +1,6 @@
 # Type: freight::apt
 #
-# 
+#
 #
 # Parameters:
 #
