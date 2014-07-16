@@ -32,7 +32,9 @@ class freight::params {
   # details) to generate a key and put its email address here. 
   $gpg_fullname = "Example User"
   $gpg_email    = 'example@example.com'
-
+  $gpg_type     = 'RSA'
+  $gpg_bits     = '1024'
+  
   $cron_cmd     = '/usr/bin/freight cache > /dev/null'
   $cron_user    = 'root'
   $cron_hour    = '*'

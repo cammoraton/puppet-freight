@@ -21,6 +21,8 @@ class freight (
   $symlinks        = $freight::params::symlinks,
   $gpg_email       = $freight::params::gpg_email,
   $gpg_fullname    = $freight::params::gpg_fullname,
+  $gpg_type        = $freight::params::gpg_type,
+  $gpg_bits        = $freight::params::gpg_bits,
   $lazy_gpg        = true,
   $cron_job        = true,
   $cron_user       = $freight::params::cron_user,

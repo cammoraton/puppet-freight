@@ -1,8 +1,8 @@
 /bin/echo "
-Key-Type: RSA
-Key-Length: 1024
-Subkey-Type: RSA
-Subkey-Length: 1024
+Key-Type: <%= @gpg_type %>
+Key-Length: <%= @gpg_bits %>
+Subkey-Type: <%= @gpg_type %>
+Subkey-Length: <%= @gpg_bits %>
 Name-Real: <%= @gpg_fullname %>
 Name-Email: <%= @gpg_email %>
 Expire-Date: 0
