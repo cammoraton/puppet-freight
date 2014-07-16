@@ -26,8 +26,12 @@ class freight::params {
   # details) to generate a key and put its email address here. 
   $gpg_fullname = "Example User"
   $gpg_email    = 'example@example.com'
-   
 
+  $cron_cmd     = '/usr/bin/freight cache > /dev/null'
+  $cron_user    = 'root'
+  $cron_hour    = '*'
+  $cron_minute  = '*/30'
+  
   # Installation information
   $apt_label    = 'freight'
   $key          = '5F93AE37'
