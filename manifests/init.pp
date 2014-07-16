@@ -77,11 +77,11 @@ class freight (
       ensure => present
     }
     
-    file { '/root/.gpg':
+    file { '/root/.gnupg':
       ensure => directory,
       notify => Exec['freight::generate_entropy']
     } ->
-    file { "/root/.gpg/${gpg_email}_added":
+    file { "/root/.gnupg/${gpg_email}_added":
       ensure => present,
       notify => Exec['freight::generate_entropy',
                      'freight::generate_gpg_key']

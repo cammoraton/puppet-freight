@@ -3,7 +3,7 @@ Key-Type: RSA
 Key-Length: 4096
 Subkey-Type: RSA
 Subkey-Length: 4096
-Name-Real: <%= gpg_fullname %>
-Name-Email: <%= gpg_email %>
+Name-Real: <%= @gpg_fullname %>
+Name-Email: <%= @gpg_email %>
 Expire-Date: 0
 " | /usr/bin/gpg --no-default-keyring --batch --gen-key
