@@ -12,6 +12,7 @@
 #
 class freight (
   $version         = 'installed',
+  $servername      = $freight::params::servername,
   $conf_file       = $freight::params::conf_file,
   $varcache        = $freight::params::varcache,
   $varlib          = $freight::params::varlib,
@@ -34,7 +35,10 @@ class freight (
   $apt_location    = $freight::params::apt_location,
   $apt_release     = $freight::params::apt_release,
   $apt_repo        = $freight::params::apt_repo,
-  $manage_apache   = true
+  $manage_apache   = true,
+  $ssl             = false,
+  $default_vhost   = true,
+  $servername      = $freight::params::servername
 ) inherits freight::params {
   if $::osfamily != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
@@ -114,6 +118,12 @@ class freight (
   if $manage_apache {
     package { 'freight': 
       ensure => $version
+    }
+    class { 'freight::apache':
+      servername    => $servername,
+      default_vhost => $default_vhost,
+      ssl           => $ssl,
+      docroot       => $varcache
     }
   } else {
     package { 'freight': 

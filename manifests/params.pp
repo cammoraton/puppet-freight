@@ -2,6 +2,12 @@ class freight::params {
   if $::osfamily != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
+  if($::fqdn) {
+    $servername = $::fqdn
+  } else {
+    $servername = $::hostname
+  }
+
   $conf_file    = '/etc/freight.conf'
   
   # Directories for the Freight library and Freight cache.  Your web
