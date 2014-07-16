@@ -1,3 +1,15 @@
+# Class: freight::params
+#
+# This class wraps around and configures apache
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
 class freight::params {
   if $::osfamily != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
@@ -9,7 +21,7 @@ class freight::params {
   }
 
   $conf_file    = '/etc/freight.conf'
-  
+
   # Directories for the Freight library and Freight cache.  Your web
   # server's document root should be `$VARCACHE`.
   $varlib       = '/var/lib/freight'
@@ -29,20 +41,20 @@ class freight::params {
 
   # GPG key to use to sign repositories.  This is required by the `apt`
   # repository provider.  Use `gpg --gen-key` (see `gpg`(1) for more
-  # details) to generate a key and put its email address here. 
-  $gpg_fullname = "Example User"
+  # details) to generate a key and put its email address here.
+  $gpg_fullname = 'Example User'
   $gpg_email    = 'example@example.com'
   $gpg_type     = 'RSA'
   $gpg_bits     = '1024'
-  
+
   # Installation information
   $apt_label    = 'freight'
   $key          = '5F93AE37'
   $key_source   = 'http://packages.rcrowley.org/keyring.gpg'
-  
+
   $apt_location = 'http://packages.rcrowley.org'
   $apt_release  = $::lsbdistcodename
   $apt_repo     = 'main'
-  
+
   # Apache defaults
 }

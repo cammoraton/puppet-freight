@@ -49,7 +49,7 @@ class freight (
   validate_re($version, 'present|installed|latest|^[.+_0-9a-zA-Z:-]+$')
 
   if $manage_apt {
-    freight::apt { $apt_label: 
+    freight::apt { $apt_label:
       location    => $apt_location,
       repo        => $apt_repo,
       release     => $apt_release,
@@ -61,22 +61,22 @@ class freight (
     }
   }
 
-  file { $conf_file: 
+  file { $conf_file:
     ensure    => present,
     content   => template('freight/freight.conf.erb'),
     subscribe => Package['freight']
   }
 
   file { $varlib:
-    ensure => directory,
+    ensure    => directory,
     subscribe => Package['freight']
   }
 
   file { $varcache:
-    ensure => directory,
+    ensure    => directory,
     subscribe => Package['freight']
   }
-  
+
   # Felt there should be an option to generate a
   # gpg key.
   if $lazy_gpg {
@@ -93,8 +93,9 @@ class freight (
     } ->
     file { "/root/.gnupg/${gpg_email}.added":
       ensure => present,
-      notify => Exec['freight::generate_entropy',
-                     'freight::generate_gpg_key']
+      notify => Exec[
+        'freight::generate_entropy',
+        'freight::generate_gpg_key' ]
     }
 
     # Spin up rngd to /dev/urandom to gen entropy
@@ -110,9 +111,9 @@ class freight (
       refreshonly => true,
     }
   }
-  
+
   if $manage_apache {
-    package { 'freight': 
+    package { 'freight':
       ensure => $version
     }
     class { 'freight::apache':
@@ -122,8 +123,8 @@ class freight (
       docroot       => $varcache
     }
   } else {
-    package { 'freight': 
-      ensure => $version 
+    package { 'freight':
+      ensure => $version
     }
   }
 }

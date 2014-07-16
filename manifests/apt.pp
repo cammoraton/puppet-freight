@@ -1,3 +1,15 @@
+# Type: freight::apt
+#
+# 
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
 define freight::apt (
   $location,
   $repo,
@@ -11,10 +23,10 @@ define freight::apt (
   if $::osfamily != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
-  
+
   validate_bool($manage_key)
   validate_bool($include_src)
-  
+
   # Suck in apt
   include ::apt
 
@@ -28,7 +40,6 @@ define freight::apt (
     }
 
     apt::key { $key:
-     # key        => $key,
       key_source => $source,
       notify     => Apt::Source[ $name ]
     }

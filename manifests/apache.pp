@@ -19,21 +19,21 @@ class freight::apache (
   $servername        = $freight::servername
 ) {
   if $default_vhost {
-    class { '::apache': 
-      default_vhost => false,
+    class { '::apache':
+      default_vhost     => false,
       default_ssl_vhost => false
     }
-  } else { 
+  } else {
     include apache
   }
-  
+
   apache::vhost { 'freight':
-    port            => $http_port,
-    servername      => $servername,
-    docroot         => $docroot,
-    default_vhost   => $default_vhost
+    port              => $http_port,
+    servername        => $servername,
+    docroot           => $docroot,
+    default_vhost     => $default_vhost
   }
-  
+
   if $ssl {
     include apache::mod::ssl
     apache::vhost { 'freight-ssl':
