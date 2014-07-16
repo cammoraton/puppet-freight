@@ -1,3 +1,15 @@
+# Class: freight::apache
+#
+# This class wraps around and configures apache
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
 class freight::apache (
   $default_vhost     = false,
   $ssl               = false,
@@ -7,7 +19,7 @@ class freight::apache (
   $servername        = $freight::servername
 ) {
   if $default_vhost {
-    class { 'apache': 
+    class { '::apache': 
       default_vhost => false,
       default_ssl_vhost => false
     }
