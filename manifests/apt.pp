@@ -27,7 +27,7 @@ define freight::apt (
       fail('Define[\'freight::apt\']: source undefined')
     }
 
-    apt::key { $name:
+    apt::key { $key:
      # key        => $key,
       key_source => $source,
       notify     => Apt::Source[ $name ]
