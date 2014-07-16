@@ -35,11 +35,6 @@ class freight::params {
   $gpg_type     = 'RSA'
   $gpg_bits     = '1024'
   
-  $cron_cmd     = '/usr/bin/freight cache > /dev/null'
-  $cron_user    = 'root'
-  $cron_hour    = '*'
-  $cron_minute  = '*/30'
-  
   # Installation information
   $apt_label    = 'freight'
   $key          = '5F93AE37'
