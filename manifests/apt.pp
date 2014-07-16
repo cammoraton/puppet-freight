@@ -28,7 +28,7 @@ define freight::apt (
     }
 
     apt::key { $name:
-      key        => $key,
+     # key        => $key,
       key_source => $source,
       notify     => Apt::Source[ $name ]
     }
